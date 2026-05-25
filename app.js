@@ -15,7 +15,7 @@ if (loginForm) {
       password: document.getElementById("password").value,
     };
 
-    fetch("http://localhost:5000/api/login", {
+    fetch("https://settlex-api.onrender.com/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginData),
@@ -52,7 +52,7 @@ if (dashboardFeed) {
   }
 
   function loadTransactions() {
-    fetch("http://localhost:5000/api/transactions")
+    fetch("https://settlex-api.onrender.com/api/transactions")
       .then((response) => response.json())
       .then((data) => {
         let dashboardHTML = "";
@@ -80,7 +80,7 @@ if (dashboardFeed) {
         amount: parseInt(document.getElementById("transferAmount").value),
       };
 
-      fetch("http://localhost:5000/api/add_transaction", {
+      fetch("https://settlex-api.onrender.com/api/add_transaction", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newTransaction),
