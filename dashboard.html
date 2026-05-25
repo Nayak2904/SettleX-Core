@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SettleX Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <h1>SettleX Live Ledger</h1>
+
+  <div class="form-container">
+    <h2>New Transfer</h2>
+    <form id="transaction-form">
+      <input type="text" id="senderName" placeholder="Merchant Name" required>
+      <input type="number" id="transferAmount" placeholder="Amount (USD)" required>
+      <button type="submit">Process Payment</button>
+    </form>
+  </div>
+
+  <h2>Transaction Feed</h2>
+  <div id="transaction-feed">Loading secure data....</div>
+
+  <script src="/app.js"></script>
+</body>
+
+</html>
