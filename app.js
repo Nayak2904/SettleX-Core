@@ -1,12 +1,54 @@
 // app.js
 
 // --- 1. PAGE DETECTION ---
-// We check which HTML elements exist on the screen so we know which page we are on.
 const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
 const dashboardFeed = document.getElementById("transaction-feed");
 
-// --- 2. LOGIN PAGE LOGIC ---
-if (loginForm) {
+// --- 2. LOGIN & REGISTRATION LOGIC ---
+if (loginForm && registerForm) {
+  // Toggle between Login and Register screens
+  document.getElementById("show-register").addEventListener("click", () => {
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("register-container").style.display = "block";
+  });
+
+  document.getElementById("show-login").addEventListener("click", () => {
+    document.getElementById("register-container").style.display = "none";
+    document.getElementById("login-container").style.display = "block";
+  });
+
+  // Handle Registration Submit
+  registerForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let newUserData = {
+      username: document.getElementById("reg-username").value,
+      password: document.getElementById("reg-password").value,
+    };
+
+    let messageBox = document.getElementById("reg-message");
+    messageBox.style.color = "#ffffff";
+    messageBox.innerText = "Creating account...";
+
+    // IMPORTANT: Make sure this is your LIVE RENDER URL, not localhost!
+    fetch("https://settlex-api.onrender.com/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUserData),
+    }).then((response) => {
+      if (response.ok) {
+        messageBox.style.color = "#4caf50"; // Green for success
+        messageBox.innerText = "Success! You can now log in.";
+        registerForm.reset();
+      } else {
+        messageBox.style.color = "#f44336"; // Red for error
+        messageBox.innerText = "Username already taken.";
+      }
+    });
+  });
+
+  // Handle Login Submit (This is your existing login code)
   loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -15,6 +57,7 @@ if (loginForm) {
       password: document.getElementById("password").value,
     };
 
+    // IMPORTANT: Make sure this is your LIVE RENDER URL, not localhost!
     fetch("https://settlex-api.onrender.com/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -29,10 +72,7 @@ if (loginForm) {
         }
       })
       .then((data) => {
-        // 🚨 THE FIX FOR AMNESIA: Save the VIP token to the browser's hard drive!
         localStorage.setItem("settlex_token", data.token);
-
-        // Navigate the browser to the dashboard page!
         window.location.href = "dashboard.html";
       });
   });
