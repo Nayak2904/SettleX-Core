@@ -7,7 +7,7 @@
   <title>SettleX Access</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Add a little link styling for the toggle */
+    /* Toggle Link Styling */
     .toggle-link {
       color: #0fc;
       cursor: pointer;
@@ -24,7 +24,20 @@
       display: none;
     }
 
-    /* Hidden by default */
+    /* NEW: Show Password Checkbox Styling */
+    .show-password-container {
+      text-align: left;
+      width: 90%;
+      margin: 0 auto 15px auto;
+      font-size: 14px;
+      color: #aaaaaa;
+    }
+
+    .show-password-container input {
+      width: auto;
+      margin-right: 5px;
+      margin-bottom: 0;
+    }
   </style>
 </head>
 
@@ -35,6 +48,12 @@
     <form id="login-form">
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
+
+      <div class="show-password-container">
+        <input type="checkbox" id="toggle-login-pass">
+        <label for="toggle-login-pass">Show Password</label>
+      </div>
+
       <button type="submit">Access Ledger</button>
     </form>
     <p id="login-error" style="color: #f44336; display: none; margin-top: 15px;">Invalid credentials.</p>
@@ -46,6 +65,12 @@
     <form id="register-form">
       <input type="text" id="reg-username" placeholder="Choose a Username" required>
       <input type="password" id="reg-password" placeholder="Choose a Password" required>
+
+      <div class="show-password-container">
+        <input type="checkbox" id="toggle-reg-pass">
+        <label for="toggle-reg-pass">Show Password</label>
+      </div>
+
       <button type="submit">Register</button>
     </form>
     <p id="reg-message" style="margin-top: 15px; font-weight: bold;"></p>

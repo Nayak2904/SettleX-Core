@@ -18,6 +18,34 @@ if (loginForm && registerForm) {
     document.getElementById("login-container").style.display = "block";
   });
 
+  // 👇 --- NEW: SHOW PASSWORD LOGIC PLACED HERE --- 👇
+
+  // 1. Login Password Toggle
+  document
+    .getElementById("toggle-login-pass")
+    .addEventListener("change", function () {
+      let passInput = document.getElementById("password");
+      if (this.checked) {
+        passInput.type = "text"; // Show it
+      } else {
+        passInput.type = "password"; // Hide it
+      }
+    });
+
+  // 2. Registration Password Toggle
+  document
+    .getElementById("toggle-reg-pass")
+    .addEventListener("change", function () {
+      let regPassInput = document.getElementById("reg-password");
+      if (this.checked) {
+        regPassInput.type = "text"; // Show it
+      } else {
+        regPassInput.type = "password"; // Hide it
+      }
+    });
+
+  // 👆 ---------------------------------------------- 👆
+
   // Handle Registration Submit
   registerForm.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -27,6 +55,7 @@ if (loginForm && registerForm) {
       password: document.getElementById("reg-password").value,
     };
 
+    // ... the rest of your fetch logic ...
     let messageBox = document.getElementById("reg-message");
     messageBox.style.color = "#ffffff";
     messageBox.innerText = "Creating account...";
