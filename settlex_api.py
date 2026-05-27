@@ -117,6 +117,31 @@ def login():
     else:
         return jsonify({"error": "Invalid username or password"}), 401
 
+        # --- ROUTE 4: REGISTER (New Users) ---
+@app.route('/api/register', methods=['POST'])
+def register():
+    incoming_data = request.get_json()
+    new_username = incoming_data["username"]
+    new_password = incoming_data["password"]
+
+    conn = sqlite3.connect('settlex_local.db')
+    cursor = conn.cursor()
+
+    # 1. Check if the username already exists
+    cursor.execute("SELECT * FROM admins WHERE username=?", (new_username,))
+    existing_user = cursor.fetchone()
+
+    if existing_user:
+        conn.close()
+        return jsonify({"error": "Username already taken!"}), 400
+
+    # 2. If it is unique, add them to the database!
+    cursor.execute("INSERT INTO admins (username, password) VALUES (?, ?)", (new_username, new_password))
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Account created successfully!"}), 201
+
 
 # --- THE ENGINE STARTER ---
 if __name__ == '__main__':
