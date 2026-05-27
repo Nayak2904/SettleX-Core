@@ -113,12 +113,19 @@ if (dashboardFeed) {
   const userToken = localStorage.getItem("settlex_token");
 
   if (!userToken) {
-    // If there is no token, kick them back to the login page immediately.
     window.location.href = "index.html";
   } else {
-    // If they have the token, load the data!
     loadTransactions();
   }
+
+  // 👇 --- NEW: LOGOUT LOGIC --- 👇
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    // 1. Destroy the token in the browser's memory
+    localStorage.removeItem("settlex_token");
+
+    // 2. Kick the user back to the login screen
+    window.location.href = "index.html";
+  });
 
   function loadTransactions() {
     fetch("https://settlex-api.onrender.com/api/transactions")
