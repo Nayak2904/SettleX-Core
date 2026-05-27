@@ -42,42 +42,48 @@
 </head>
 
 <body>
+  <h1>SettleX Live Ledger</h1>
 
-  <div class="login-container" id="login-container">
-    <h2>SettleX Login</h2>
-    <form id="login-form">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-
-      <div class="show-password-container">
-        <input type="checkbox" id="toggle-login-pass">
-        <label for="toggle-login-pass">Show Password</label>
-      </div>
-
-      <button type="submit">Access Ledger</button>
-    </form>
-    <p id="login-error" style="color: #f44336; display: none; margin-top: 15px;">Invalid credentials.</p>
-    <span class="toggle-link" id="show-register">Need an account? Sign Up</span>
+  <div style="text-align: right; margin-bottom: 20px;">
+    <button id="logout-btn" style="background-color: #f44336; color: white; width: auto;">Secure Logout</button>
   </div>
 
-  <div class="login-container" id="register-container">
-    <h2>Create Account</h2>
-    <form id="register-form">
-      <input type="text" id="reg-username" placeholder="Choose a Username" required>
-      <input type="password" id="reg-password" placeholder="Choose a Password" required>
+  <div class="form-container">
+    <div class="login-container" id="login-container">
+      <h2>SettleX Login</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
 
-      <div class="show-password-container">
-        <input type="checkbox" id="toggle-reg-pass">
-        <label for="toggle-reg-pass">Show Password</label>
-      </div>
+        <div class="show-password-container">
+          <input type="checkbox" id="toggle-login-pass">
+          <label for="toggle-login-pass">Show Password</label>
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
-    <p id="reg-message" style="margin-top: 15px; font-weight: bold;"></p>
-    <span class="toggle-link" id="show-login">Already have an account? Log In</span>
-  </div>
+        <button type="submit">Access Ledger</button>
+      </form>
+      <p id="login-error" style="color: #f44336; display: none; margin-top: 15px;">Invalid credentials.</p>
+      <span class="toggle-link" id="show-register">Need an account? Sign Up</span>
+    </div>
 
-  <script src="app.js"></script>
+    <div class="login-container" id="register-container">
+      <h2>Create Account</h2>
+      <form id="register-form">
+        <input type="text" id="reg-username" placeholder="Choose a Username" required>
+        <input type="password" id="reg-password" placeholder="Choose a Password" required>
+
+        <div class="show-password-container">
+          <input type="checkbox" id="toggle-reg-pass">
+          <label for="toggle-reg-pass">Show Password</label>
+        </div>
+
+        <button type="submit">Register</button>
+      </form>
+      <p id="reg-message" style="margin-top: 15px; font-weight: bold;"></p>
+      <span class="toggle-link" id="show-login">Already have an account? Log In</span>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 
 </html>
