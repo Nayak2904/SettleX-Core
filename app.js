@@ -109,7 +109,7 @@ if (loginForm && registerForm) {
 
 // --- 3. DASHBOARD PAGE LOGIC ---
 if (dashboardFeed) {
-  // 🚨 SECURITY GATE: Before loading data, check if they have the VIP token!
+  // Security Gate: Check for token
   const userToken = localStorage.getItem("settlex_token");
 
   if (!userToken) {
@@ -118,13 +118,10 @@ if (dashboardFeed) {
     loadTransactions();
   }
 
-  // 👇 --- NEW: LOGOUT LOGIC --- 👇
+  // 👇 THE LOGOUT LOGIC (Safely inside the dashboard block) 👇
   document.getElementById("logout-btn").addEventListener("click", function () {
-    // 1. Destroy the token in the browser's memory
-    localStorage.removeItem("settlex_token");
-
-    // 2. Kick the user back to the login screen
-    window.location.href = "index.html";
+    localStorage.removeItem("settlex_token"); // Wipe the memory
+    window.location.href = "index.html"; // Kick back to login
   });
 
   function loadTransactions() {
